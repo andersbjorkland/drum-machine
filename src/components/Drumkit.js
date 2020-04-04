@@ -1,41 +1,29 @@
-import cy01 from '../sounds/CYCdh_K2room_Kick-03.mp3';
-import cy02 from '../sounds/CYCdh_K2room_Kick-04.mp3';
-import cy03 from '../sounds/CYCdh_K2room_Kick-05.mp3';
-import cy04 from '../sounds/CYCdh_K2room_Kick-06.mp3';
-import cy05 from '../sounds/CYCdh_K2room_Kick-07.mp3';
-import cy06 from '../sounds/CYCdh_K2room_Kick-08.mp3';
 import React from 'react';
-
+import { connect } from 'react-redux';
+import Drum from './Drum';
 
 
 class Drumkit extends React.Component {
     constructor(props) {
         super(props);
+        this.drums = this.props.appReducer.drums;
     }
 
     render () {
-        const drumArr = [
-            cy01,
-            cy02,
-            cy03,
-            cy04,
-            cy05,
-            cy06
-        ];
-        const drumkit = drumArr.map(i => 
-            <audio controls src={i}> Your browser does not support the <code>audio</code> element.</audio>
-        );
-
+        const drumComponents = [];
+        this.drums.forEach(drum => {
+            drumComponents.push(<Drum key={drum.id} id={drum.id} src={drum.src} char={drum.char}/>)
+        });
         return (
-            <div>
-                {drumkit}
+            <div id="drum-machine">
+                {drumComponents}
             </div>
         );
     }
 }
 
-
-
-
-
-export default Drumkit;
+const mapStateToProps = state => ({
+    ...state
+});
+  
+export default connect(mapStateToProps)(Drumkit);

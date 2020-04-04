@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+#drum-machine {
+  display: grid;
+  grid-template-columns: repeat(3, 3rem);
+  grid-template-rows: repeat(3, 3rem);
+  gap: 1rem;
+}
+
+.drum-pad {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}
