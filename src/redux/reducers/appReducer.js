@@ -10,8 +10,7 @@ import cy08 from '../../sounds/CYCdh_ElecK02-FX01.wav';
 
 import Drum from '../../utilities/Drum';
 
-import {PRESSED_KEY} from '../actions';
-import {pressedKey} from '../actions';
+import {PRESSED_KEY, DRUM_CLICKED} from '../actions';
 
 const drumClips = [
     new Drum(0, cy00, 'Q', 81),
@@ -35,9 +34,17 @@ function appReducer(state = initialState, action) {
     console.log("Handeling an action.");
     switch(action.type) {
         case PRESSED_KEY:
-            console.log("KEY WAS PRESSED: " + action.payload.keycode);
-            let active = drumClips.filter(obj => {
+            var active = drumClips.filter(obj => {
                 return obj.keycode == action.payload.keycode;
+            })
+            return Object.assign({}, state, {
+                activeDrum: active[0].id
+            });
+        case DRUM_CLICKED:
+            let id = action.payload.id.substring(15, 16);
+            console.log("PAYLOAD: " + id);
+            var active = drumClips.filter(obj => {
+                return obj.id == id;
             })
             return Object.assign({}, state, {
                 activeDrum: active[0].id

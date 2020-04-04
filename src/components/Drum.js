@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { pressedKey } from '../redux/actions';
+import { pressedKey, drumClicked } from '../redux/actions';
 
 class Drum extends React.Component {
     constructor(props) {
@@ -11,15 +11,11 @@ class Drum extends React.Component {
     }
 
     play(e) {
+        let element = e.currentTarget;
+        return this.props.drumClicked(element.id);
         // let elementId = e.currentTarget.id;
-        if (this.permittedKeys.includes(e.keycode)){
             // const drumElement = document.getElementById(this.props.keyTrigger);
             // drumElement.classList('active');
-            return this.props.pressedKey(e.keycode);
-
-        } else {
-            console.log("not permitted key: " + e.keycode);
-        }
         // this.props.updateActiveDrum(elementId);
         // 
         // const drumId = e.currentTarget;
@@ -57,7 +53,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    pressedKey: (keycode) => dispatch(pressedKey(keycode))
+    pressedKey: (keycode) => dispatch(pressedKey(keycode)),
+    drumClicked: (id) => dispatch(drumClicked(id))
 });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Drum);
