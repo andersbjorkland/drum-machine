@@ -5,7 +5,7 @@ import './App.css';
 import Drumkit from './components/Drumkit';
 
 import { connect } from 'react-redux';
-import { pressedKey } from './redux/actions';
+import { pressedKey, timedout } from './redux/actions';
 
 
 class App extends React.Component {
@@ -16,9 +16,11 @@ class App extends React.Component {
   }
 
   keyPress(e) {
+    // this.props.appReducer.timer = setTimeout(this.props.timedout(), 500);
+    this.props.timedout();
 
     if (this.permittedKeys.includes(e.charCode)){
-        return this.props.pressedKey(e.keyCode);
+        return this.props.pressedKey(e.charCode);
     } else if (this.permittedKeys.includes(e.charCode-32)) {
         let number = (e.charCode-32);
         return this.props.pressedKey(number);
@@ -29,21 +31,11 @@ class App extends React.Component {
     return (
       <div className="App" onKeyPress={this.keyPress} tabIndex="0">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Drumkit />
+          <h1>The Drum Machine</h1>
         </header>
-        <p>Active drum is: {this.props.appReducer.activeDrum}</p>
+        <div id="content-container">
+          <Drumkit />
+        </div>
       </div>
     );
   }
@@ -54,7 +46,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  pressedKey: (keycode) => dispatch(pressedKey(keycode))
+  pressedKey: (keycode) => dispatch(pressedKey(keycode)),
+  timedout: () => dispatch(timedout())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

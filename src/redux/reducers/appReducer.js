@@ -10,7 +10,7 @@ import cy08 from '../../sounds/CYCdh_ElecK02-FX01.wav';
 
 import Drum from '../../utilities/Drum';
 
-import {PRESSED_KEY, DRUM_CLICKED} from '../actions';
+import {PRESSED_KEY, DRUM_CLICKED, RESET} from '../actions';
 
 const drumClips = [
     new Drum(0, cy00, 'Q', 81),
@@ -27,11 +27,13 @@ const drumClips = [
 const initialState = {
     status: "OK",
     drums: drumClips,
-    activeDrum: ""
+    activeDrum: "",
+    timer: null
 }
 
 function appReducer(state = initialState, action) {
     console.log("Handeling an action.");
+    console.log("aCTION: " + action.type);
     switch(action.type) {
         case PRESSED_KEY:
             var active = drumClips.filter(obj => {
@@ -48,6 +50,11 @@ function appReducer(state = initialState, action) {
             })
             return Object.assign({}, state, {
                 activeDrum: active[0].id
+            });
+        case RESET:
+            console.log("RESET was fired.");
+            return Object.assign({}, state, {
+                activeDrum: ""
             });
         default:
             return state;

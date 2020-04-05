@@ -13,14 +13,12 @@
   }
 }
 
-.App-header {
+header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
@@ -48,4 +46,25 @@
   width: 100%;
   height: 100%;
   background-color: red;
+}
+
+#content-container {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.active {
+  animation: active;
+  animation-duration: 1s;
+}
+
+@keyframes active {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }

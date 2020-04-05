@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { pressedKey, drumClicked } from '../redux/actions';
+import { pressedKey, drumClicked, timedout } from '../redux/actions';
 
 class Drum extends React.Component {
     constructor(props) {
@@ -54,7 +54,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     pressedKey: (keycode) => dispatch(pressedKey(keycode)),
-    drumClicked: (id) => dispatch(drumClicked(id))
+    drumClicked: (id) => dispatch(drumClicked(id)),
+    timedout: () => dispatch(timedout())
 });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Drum);
