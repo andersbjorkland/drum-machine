@@ -1,6 +1,13 @@
+  
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Roboto|Raleway:300&display=swap');
+
 .App {
   text-align: center;
   height: 100vh;
+  font-family: 'Poiret One', cursive;
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(to right bottom, #ffffff, #f7f6fe, #efeefd, #e6e6fd, #dddefc);
 }
 
 .App-logo {
@@ -15,12 +22,19 @@
 }
 
 header {
-  background-color: #282c34;
+  height: 11rem;
+  background-color: #66458A;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #7af5f1;
+}
+
+img {
+  height: 11rem;
+  position: absolute;
+  top: 2rem;
+  left: 3rem;
 }
 
 .App-link {
@@ -46,7 +60,17 @@ header {
 .drum-pad {
   width: 100%;
   height: 100%;
-  background-color: red;
+  color: #45488a;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: -5px 5px 10px #dedffc, 5px -5px 10px #fbfafe;
+}
+
+.drum-pad:hover {
+  cursor: default;
 }
 
 #content-container {
@@ -58,15 +82,32 @@ header {
 }
 
 .active {
+  background-color: #7af5f1;
   animation: active;
   animation-duration: 0.5s;
 }
 
 @keyframes active {
-  0% {
-    opacity: 1;
-  }
   100% {
-    opacity: 0.6;
+    background-color: #f2f1fd;
   }
+  
+}
+
+@media (max-width: 800px) {
+  img {
+    width: 5rem;
+    position: inherit;
+  }
+}
+
+footer {
+  color: #45488a;
+  align-self: flex-start;
+  margin: 0rem auto 3rem 3rem;
+  font-size: 1.2rem;
+}
+
+a {
+  text-decoration: none;
 }

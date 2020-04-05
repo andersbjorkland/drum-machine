@@ -24,6 +24,6 @@ export const finishedTimer = () => {
 
 export function timedout() {
     return function(dispatch) {
-        setTimeout(function(){dispatch(finishedTimer())}, 500) ;
+        setTimeout(function(){dispatch(finishedTimer())}, 300) ;
     }
 }

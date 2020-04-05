@@ -20,11 +20,13 @@ class App extends React.Component {
     let audioElement = null;
     if (this.permittedKeys.includes(e.charCode)){
         audioElement = document.getElementById(String.fromCharCode(e.charCode));
+        audioElement.currentTime = 0;
         audioElement.play();
         return this.props.pressedKey(e.charCode);
     } else if (this.permittedKeys.includes(e.charCode-32)) {
         let number = (e.charCode-32);
         audioElement = document.getElementById(String.fromCharCode(number));
+        audioElement.currentTime = 0;
         audioElement.play();
         return this.props.pressedKey(number);
     }
@@ -34,11 +36,12 @@ class App extends React.Component {
     return (
       <div className="App" onKeyPress={this.keyPress} tabIndex="0">
         <header className="App-header">
-          <h1>The Drum Machine</h1>
+        <img src={logo} alt="Drum Machine logo"/><h1>The Drum Machine</h1>
         </header>
         <div id="content-container">
           <Drumkit />
         </div>
+        <footer><a href="https://anders.femtearenan.se">Av Anders Björkland 2020</a></footer>
       </div>
     );
   }

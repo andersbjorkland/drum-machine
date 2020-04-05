@@ -16,6 +16,7 @@ class Drum extends React.Component {
         let audioElement = document.getElementById(audioElementId);
         this.props.timedout();
 
+        audioElement.currentTime = 0;
         audioElement.play();;
         return this.props.drumClicked(audioElementId);
         
