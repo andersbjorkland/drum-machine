@@ -32,21 +32,22 @@ const initialState = {
 }
 
 function appReducer(state = initialState, action) {
+    let active = "";
     switch(action.type) {
         case PRESSED_KEY:
-            var active = drumClips.filter(obj => {
+            active = drumClips.filter(obj => {
                 return obj.keycode === action.payload.keycode;
             })
             return Object.assign({}, state, {
-                activeDrum: active[0].id
+                activeDrum: active[0].char
             });
         case DRUM_CLICKED:
-            let id = action.payload.id.substring(15, 16);
-            var active = drumClips.filter(obj => {
-                return obj.id == id;
+            let id = action.payload.id;
+            active = drumClips.filter(obj => {
+                return obj.char === id;
             })
             return Object.assign({}, state, {
-                activeDrum: active[0].id
+                activeDrum: active[0].char
             });
         case RESET:
             return Object.assign({}, state, {

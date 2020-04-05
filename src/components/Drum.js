@@ -12,13 +12,13 @@ class Drum extends React.Component {
 
     play(e) {
         let element = e.currentTarget;
+        let audioElementId = element.id.substring(15, 16);
+        let audioElement = document.getElementById(audioElementId);
         this.props.timedout();
-        return this.props.drumClicked(element.id);
-        // let elementId = e.currentTarget.id;
-            // const drumElement = document.getElementById(this.props.keyTrigger);
-            // drumElement.classList('active');
-        // this.props.updateActiveDrum(elementId);
-        // 
+
+        audioElement.play();;
+        return this.props.drumClicked(audioElementId);
+        
         // const drumId = e.currentTarget;
         // sound.currentTime = 0;
         // sound.play();

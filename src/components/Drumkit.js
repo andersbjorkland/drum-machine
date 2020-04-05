@@ -12,7 +12,7 @@ class Drumkit extends React.Component {
     render () {
         const drumComponents = [];
         this.drums.forEach(drum => {
-            drumComponents.push(<Drum key={drum.id} id={drum.id} src={drum.src} char={drum.char}/>)
+            drumComponents.push(<Drum key={drum.id} id={drum.char} src={drum.src} char={drum.char}/>)
         });
         return (
             <div id="drum-machine">

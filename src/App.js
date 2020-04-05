@@ -16,16 +16,19 @@ class App extends React.Component {
   }
 
   keyPress(e) {
-    // this.props.appReducer.timer = setTimeout(this.props.timedout(), 500);
     this.props.timedout();
-
+    let audioElement = null;
     if (this.permittedKeys.includes(e.charCode)){
+        audioElement = document.getElementById(String.fromCharCode(e.charCode));
+        audioElement.play();
         return this.props.pressedKey(e.charCode);
     } else if (this.permittedKeys.includes(e.charCode-32)) {
         let number = (e.charCode-32);
+        audioElement = document.getElementById(String.fromCharCode(number));
+        audioElement.play();
         return this.props.pressedKey(number);
     }
-}
+  }
 
   render (){
     return (
