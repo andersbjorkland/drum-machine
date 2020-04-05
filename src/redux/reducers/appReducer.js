@@ -32,19 +32,16 @@ const initialState = {
 }
 
 function appReducer(state = initialState, action) {
-    console.log("Handeling an action.");
-    console.log("aCTION: " + action.type);
     switch(action.type) {
         case PRESSED_KEY:
             var active = drumClips.filter(obj => {
-                return obj.keycode == action.payload.keycode;
+                return obj.keycode === action.payload.keycode;
             })
             return Object.assign({}, state, {
                 activeDrum: active[0].id
             });
         case DRUM_CLICKED:
             let id = action.payload.id.substring(15, 16);
-            console.log("PAYLOAD: " + id);
             var active = drumClips.filter(obj => {
                 return obj.id == id;
             })
@@ -52,7 +49,6 @@ function appReducer(state = initialState, action) {
                 activeDrum: active[0].id
             });
         case RESET:
-            console.log("RESET was fired.");
             return Object.assign({}, state, {
                 activeDrum: ""
             });

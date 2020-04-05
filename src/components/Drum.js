@@ -12,6 +12,7 @@ class Drum extends React.Component {
 
     play(e) {
         let element = e.currentTarget;
+        this.props.timedout();
         return this.props.drumClicked(element.id);
         // let elementId = e.currentTarget.id;
             // const drumElement = document.getElementById(this.props.keyTrigger);
@@ -34,7 +35,6 @@ class Drum extends React.Component {
                 </div>
             );
         } else {
-            console.log("nomatch");
             return (
                 <div id={"drum-container-" + this.props.id} 
                     onClick={this.play} 

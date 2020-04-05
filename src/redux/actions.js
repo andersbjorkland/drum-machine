@@ -17,20 +17,13 @@ export const drumClicked = (elementId) => ({
 });
 
 export const finishedTimer = () => {
-    console.log("finishedTimer is called");
     return {
         type: RESET
     }
 }
 
-// export const timedout = () => ({
-//     type: RESET
-// });
-
 export function timedout() {
-    console.log("Timeout called");
     return function(dispatch) {
-        console.log("inside dispatch of timedout.");
-        setTimeout(function(){dispatch(finishedTimer())}, 1000) ;
+        setTimeout(function(){dispatch(finishedTimer())}, 500) ;
     }
 }

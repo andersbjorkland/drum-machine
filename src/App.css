@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .App-logo {
@@ -49,6 +50,7 @@ header {
 }
 
 #content-container {
+  height: 100%;
   padding-top: 5rem;
   display: flex;
   flex-direction: column;
@@ -57,7 +59,7 @@ header {
 
 .active {
   animation: active;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 @keyframes active {
