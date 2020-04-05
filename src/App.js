@@ -41,7 +41,7 @@ class App extends React.Component {
         <div id="content-container">
           <Drumkit />
         </div>
-        <footer><a href="https://anders.femtearenan.se">Av Anders Björkland 2020</a></footer>
+        <footer><a href="https://anders.femtearenan.se">Anders Björkland 2020</a></footer>
       </div>
     );
   }
