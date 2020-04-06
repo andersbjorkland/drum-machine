@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Drumkit from './components/Drumkit';
+import Display from './components/Display';
 
 import { connect } from 'react-redux';
 import { pressedKey, timedout } from './redux/actions';
@@ -34,12 +35,13 @@ class App extends React.Component {
 
   render (){
     return (
-      <div className="App" onKeyPress={this.keyPress} tabIndex="0">
+      <div id="drum-machine" className="App" onKeyPress={this.keyPress} tabIndex="0">
         <header className="App-header">
         <img src={logo} alt="Drum Machine logo"/><h1>The Drum Machine</h1>
         </header>
         <div id="content-container">
           <Drumkit />
+          <Display />
         </div>
         <footer><a href="https://anders.femtearenan.se">Anders Björkland 2020</a></footer>
       </div>

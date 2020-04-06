@@ -15,7 +15,7 @@ class Drumkit extends React.Component {
             drumComponents.push(<Drum key={drum.id} id={drum.char} src={drum.src} char={drum.char}/>)
         });
         return (
-            <div id="drum-machine">
+            <div id="drum-kit">
                 {drumComponents}
             </div>
         );

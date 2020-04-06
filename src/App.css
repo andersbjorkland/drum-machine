@@ -50,7 +50,7 @@ img {
   }
 }
 
-#drum-machine {
+#drum-kit {
   display: grid;
   grid-template-columns: repeat(3, 3rem);
   grid-template-rows: repeat(3, 3rem);
@@ -110,4 +110,13 @@ footer {
 
 a {
   text-decoration: none;
+}
+
+#display {
+  height: 8rem;
+}
+
+#display p {
+  font-size: 3rem;
+  color: #45488a;
 }
