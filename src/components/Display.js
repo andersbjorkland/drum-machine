@@ -8,11 +8,20 @@ class Display extends React.Component {
     }
 
     render() {
-        return (
-            <div id="display">
-                <p>{this.props.appReducer.activeDrum}</p>
-            </div>
-        );
+        if(this.props.appReducer.activeDrum === "s" ) {
+            return (
+                <div id="display">
+                    <p>SPACE</p>
+                </div>
+            );
+        } else {
+            return (
+                <div id="display">
+                    <p>{this.props.appReducer.activeDrum}</p>
+                </div>
+            );
+        }
+        
         
     }
 }

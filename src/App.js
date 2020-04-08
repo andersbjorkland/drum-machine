@@ -13,27 +13,31 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.keyPress = this.keyPress.bind(this);
-    this.permittedKeys = [81, 87, 69, 65, 83, 68, 90, 88, 67];
   }
 
   keyPress(e) {
     this.props.timedout();
     let audioElement = null;
-    if (this.permittedKeys.includes(e.charCode)){
+    if (this.props.appReducer.permittedKeys.includes(e.charCode)){
         audioElement = document.getElementById(String.fromCharCode(e.charCode));
         audioElement.currentTime = 0;
         audioElement.play();
         return this.props.pressedKey(e.charCode);
-    } else if (this.permittedKeys.includes(e.charCode-32)) {
+    } else if (this.props.appReducer.permittedKeys.includes(e.charCode-32)) {
         let number = (e.charCode-32);
         audioElement = document.getElementById(String.fromCharCode(number));
         audioElement.currentTime = 0;
         audioElement.play();
         return this.props.pressedKey(number);
+    } else if (e.charCode === this.props.appReducer.spaceKey) {
+        return this.props.pressedKey(e.charCode);
     }
   }
 
   render (){
+    if (!this.props.appReducer.isFetching){
+      document.getElementById("drum-machine").focus();
+    }
     return (
       <div id="drum-machine" className="App" onKeyPress={this.keyPress} tabIndex="0">
         <header className="App-header">

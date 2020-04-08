@@ -120,3 +120,17 @@ a {
   font-size: 3rem;
   color: #45488a;
 }
+
+#drum-container-s {
+  grid-column: 1/4;
+  border-radius: 1rem;
+  padding: 0.3rem;
+  color: white;
+  background-color: #7c7ff7;
+  min-height: 1.1rem;
+  text-transform: uppercase;
+}
+
+div#drum-container-s::after {
+  content: "pace";
+}

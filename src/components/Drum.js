@@ -7,7 +7,6 @@ class Drum extends React.Component {
     constructor(props) {
         super(props);
         this.play = this.play.bind(this);
-        this.permittedKeys = [65, 67, 68, 69, 81, 83, 87, 88, 90];
     }
 
     play(e) {
@@ -15,14 +14,12 @@ class Drum extends React.Component {
         let audioElementId = element.id.substring(15, 16);
         let audioElement = document.getElementById(audioElementId);
         this.props.timedout();
-
-        audioElement.currentTime = 0;
-        audioElement.play();;
-        return this.props.drumClicked(audioElementId);
+        if (audioElementId !== "s") {
+            audioElement.currentTime = 0;
+            audioElement.play();;
+        }
         
-        // const drumId = e.currentTarget;
-        // sound.currentTime = 0;
-        // sound.play();
+        return this.props.drumClicked(audioElementId);
     }
 
     render() {
