@@ -2,8 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Drumkit from './components/Drumkit';
 import Display from './components/Display';
+import Drumkit from './components/Drumkit';
+import DrumPattern from './components/DrumPattern';
 
 import { connect } from 'react-redux';
 import { pressedKey, timedout } from './redux/actions';
@@ -44,8 +45,13 @@ class App extends React.Component {
         <img src={logo} alt="Drum Machine logo"/><h1>The Drum Machine</h1>
         </header>
         <div id="content-container">
-          <Drumkit />
-          <Display />
+          <div id="controls">
+            <Drumkit />
+            <Display />
+          </div>
+          <div id="playback">
+            <DrumPattern />
+          </div>          
         </div>
         <footer><a href="https://anders.femtearenan.se">Anders Björkland 2020</a></footer>
       </div>

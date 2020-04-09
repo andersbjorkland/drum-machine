@@ -38,16 +38,16 @@ const initialState = {
 function appReducer(state = initialState, action) {
     let active = "";
     let char = "";
+    let charId = "";
     switch(action.type) {
         case PRESSED_KEY:
-            console.log(state.drums);
-            console.log(action.payload.keycode);
             active = state.drums.filter(obj => {
                 return obj.keycode == action.payload.keycode;
             });
             char = getActiveChar(active);
+            charId = active[0].char;
             return Object.assign({}, state, {
-                activeDrum: char,
+                activeDrum: charId,
                 pattern: state.pattern + char
             });
         case DRUM_CLICKED:
@@ -56,8 +56,9 @@ function appReducer(state = initialState, action) {
                 return obj.char === id;
             })
             char = getActiveChar(active);
+            charId = active[0].char;
             return Object.assign({}, state, {
-                activeDrum: char,
+                activeDrum: charId,
                 pattern: state.pattern + char
             });
         case RESET:
@@ -88,7 +89,7 @@ function appReducer(state = initialState, action) {
 
 function getActiveChar(active) {
     console.log(active);
-    return active[0].char === "s" ? "s" : active[0].char;
+    return active[0].char === "s" ? " " : active[0].char;
 }
 
 export default appReducer;

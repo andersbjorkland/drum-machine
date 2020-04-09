@@ -6,12 +6,21 @@ import { pressedKey, drumClicked, timedout } from '../redux/actions';
 class DrumPattern extends React.Component {
     constructor(props) {
         super(props);
+        this.textarea = React.createRef();
+    }
+
+    componentDidUpdate() {
+        this.textarea.current.scrollTop = this.textarea.current.scrollHeight;
     }
 
     render() {
-        <div>
-            <textarea>{this.props.appReducer.pattern}</textarea>
+
+        return (
+        <div id="drum-pattern-container">
+            <h2>Track</h2>
+            <textarea ref={this.textarea} value={this.props.appReducer.pattern}></textarea>
         </div>
+        );
     }
 
 }
