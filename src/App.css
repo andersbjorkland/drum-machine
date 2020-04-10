@@ -69,7 +69,11 @@ img {
   box-shadow: -5px 5px 10px #dedffc, 5px -5px 10px #fbfafe;
 }
 
-.drum-pad:hover {
+.btn {
+  box-shadow: -5px 5px 10px #dedffc, 5px -5px 10px #fbfafe;
+}
+
+.drum-pad:hover, .btn:hover {
   cursor: default;
 }
 

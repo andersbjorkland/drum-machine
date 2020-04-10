@@ -3,6 +3,7 @@ export const DRUM_CLICKED = "DRUM_CLICKED";
 export const RESET = "RESET";
 export const REQUEST_DRUMS = "REQUEST_DRUMS";
 export const RESOLVED_GET_DRUMS = "RESOLVED_GET_DRUMS";
+export const DELETE_LAST = "DELETE_LAST";
 
 export const pressedKey = (keycode) => ({
     type: PRESSED_KEY,
@@ -53,5 +54,11 @@ export const resolvedGetDrums = (json) =>  {
 export const requestDrums = () => {
     return {
         type: REQUEST_DRUMS
+    }
+}
+
+export const deleteLast = (text) => {
+    return {
+        type: DELETE_LAST
     }
 }

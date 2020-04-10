@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { pressedKey, drumClicked, timedout } from '../redux/actions';
-
 class DrumPattern extends React.Component {
     constructor(props) {
         super(props);
@@ -14,11 +12,10 @@ class DrumPattern extends React.Component {
     }
 
     render() {
-
         return (
         <div id="drum-pattern-container">
             <h2>Track</h2>
-            <textarea ref={this.textarea} value={this.props.appReducer.pattern}></textarea>
+            <textarea readOnly ref={this.textarea} value={this.props.appReducer.pattern}></textarea>
         </div>
         );
     }
@@ -28,9 +25,5 @@ class DrumPattern extends React.Component {
 const mapStateToProps = state => ({
     ...state
 });
-
-// const mapDispatchToProps = dispatch => ({
-//     timedout: () => dispatch(timedout())
-// });
   
 export default connect(mapStateToProps)(DrumPattern);

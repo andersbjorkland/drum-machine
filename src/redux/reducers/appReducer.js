@@ -10,7 +10,7 @@ import cy08 from '../../sounds/CYCdh_ElecK02-FX01.wav';
 
 import Drum from '../../utilities/Drum';
 
-import {PRESSED_KEY, DRUM_CLICKED, RESET, REQUEST_DRUMS, RESOLVED_GET_DRUMS} from '../actions';
+import {PRESSED_KEY, DRUM_CLICKED, RESET, REQUEST_DRUMS, RESOLVED_GET_DRUMS, DELETE_LAST} from '../actions';
 
 const drumClips = [
     new Drum(0, "", 'Q', 81),
@@ -28,6 +28,7 @@ const initialState = {
     status: "OK",
     drums: [],
     activeDrum: "",
+    activeButton: "",
     pattern: "",
     permittedKeys: [65, 67, 68, 69, 81, 83, 87, 88, 90],
     spaceKey: 32,
@@ -63,7 +64,8 @@ function appReducer(state = initialState, action) {
             });
         case RESET:
             return Object.assign({}, state, {
-                activeDrum: ""
+                activeDrum: "",
+                activeButton: ""
             });
         case REQUEST_DRUMS:
             return Object.assign({}, state, {
@@ -81,6 +83,15 @@ function appReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 drums: drums
+            });
+        case DELETE_LAST:
+            let pattern = "";
+            if (state.pattern.length > 1) {
+                pattern = state.pattern.substr(0, state.pattern.length - 1);
+            }
+            return Object.assign({}, state, {
+                pattern: pattern,
+                activeButton: "delete"
             });
         default:
             return state;

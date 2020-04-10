@@ -2,18 +2,27 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Delete from './components/Delete';
 import Display from './components/Display';
 import Drumkit from './components/Drumkit';
 import DrumPattern from './components/DrumPattern';
 
 import { connect } from 'react-redux';
-import { pressedKey, timedout } from './redux/actions';
+import { pressedKey, timedout, deleteLast } from './redux/actions';
 
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.keyPress = this.keyPress.bind(this);
+    this.downEvent = this.downEvent.bind(this);
+  }
+
+  downEvent(e) {
+    if (e.key === 'Backspace' || e.key === 'Delete') {
+      this.props.timedout();
+      this.props.deleteLast();
+    }
   }
 
   keyPress(e) {
@@ -40,7 +49,7 @@ class App extends React.Component {
       document.getElementById("drum-machine").focus();
     }
     return (
-      <div id="drum-machine" className="App" onKeyPress={this.keyPress} tabIndex="0">
+      <div id="drum-machine" className="App" onKeyPress={this.keyPress} onKeyDown={this.downEvent} tabIndex="0">
         <header className="App-header">
         <img src={logo} alt="Drum Machine logo"/><h1>The Drum Machine</h1>
         </header>
@@ -51,6 +60,7 @@ class App extends React.Component {
           </div>
           <div id="playback">
             <DrumPattern />
+            <Delete />
           </div>          
         </div>
         <footer><a href="https://anders.femtearenan.se">Anders Björkland 2020</a></footer>
@@ -65,7 +75,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   pressedKey: (keycode) => dispatch(pressedKey(keycode)),
-  timedout: () => dispatch(timedout())
+  timedout: () => dispatch(timedout()),
+  deleteLast: () => dispatch(deleteLast())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
