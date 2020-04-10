@@ -4,6 +4,7 @@ export const RESET = "RESET";
 export const REQUEST_DRUMS = "REQUEST_DRUMS";
 export const RESOLVED_GET_DRUMS = "RESOLVED_GET_DRUMS";
 export const DELETE_LAST = "DELETE_LAST";
+export const PLAY_ON = "PLAY_ON";
 
 export const pressedKey = (keycode) => ({
     type: PRESSED_KEY,
@@ -32,8 +33,6 @@ export function timedout() {
 }
 
 export const getDrums = () => {
-    console.log('getDrums is fired');
-
     return function (dispatch) {
     // Make the app aware of fired async action
     dispatch(requestDrums());
@@ -60,5 +59,11 @@ export const requestDrums = () => {
 export const deleteLast = (text) => {
     return {
         type: DELETE_LAST
+    }
+}
+
+export const playOn = () => {
+    return {
+        type: PLAY_ON
     }
 }

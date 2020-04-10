@@ -6,6 +6,7 @@ import Delete from './components/Delete';
 import Display from './components/Display';
 import Drumkit from './components/Drumkit';
 import DrumPattern from './components/DrumPattern';
+import Playback from './components/Playback';
 
 import { connect } from 'react-redux';
 import { pressedKey, timedout, deleteLast } from './redux/actions';
@@ -16,6 +17,8 @@ class App extends React.Component {
     super(props);
     this.keyPress = this.keyPress.bind(this);
     this.downEvent = this.downEvent.bind(this);
+    this.playback = this.playback.bind(this);
+    this.playElement = this.playElement.bind(this);
   }
 
   downEvent(e) {
@@ -44,6 +47,27 @@ class App extends React.Component {
     }
   }
 
+  playback(e, i) {
+    if (undefined === i) {
+      i = 0;
+    }
+    if (this.props.appReducer.pattern.length > i) {
+      this.playElement(this.props.appReducer.pattern.charAt(i));
+      let iteration = i + 1;
+      if (this.props.appReducer.pattern.length > i+1) {
+        setTimeout( () => this.playback(e, iteration), this.props.appReducer.playbackSpeed);
+      }
+    }
+  }
+
+  playElement(character) {
+    if (character !== " ") {
+      let audioElement = document.getElementById(character);
+      audioElement.currentTime = 0;
+      audioElement.play();
+    }
+  }
+
   render (){
     if (!this.props.appReducer.isFetching){
       document.getElementById("drum-machine").focus();
@@ -61,6 +85,7 @@ class App extends React.Component {
           <div id="playback">
             <DrumPattern />
             <Delete />
+            <Playback clickFunction={this.playback} />
           </div>          
         </div>
         <footer><a href="https://anders.femtearenan.se">Anders Björkland 2020</a></footer>

@@ -10,7 +10,7 @@ import cy08 from '../../sounds/CYCdh_ElecK02-FX01.wav';
 
 import Drum from '../../utilities/Drum';
 
-import {PRESSED_KEY, DRUM_CLICKED, RESET, REQUEST_DRUMS, RESOLVED_GET_DRUMS, DELETE_LAST} from '../actions';
+import {PRESSED_KEY, DRUM_CLICKED, RESET, REQUEST_DRUMS, RESOLVED_GET_DRUMS, DELETE_LAST, PLAY_ON} from '../actions';
 
 const drumClips = [
     new Drum(0, "", 'Q', 81),
@@ -33,7 +33,8 @@ const initialState = {
     permittedKeys: [65, 67, 68, 69, 81, 83, 87, 88, 90],
     spaceKey: 32,
     isFetching: true,
-    timer: null
+    timer: null,
+    playbackSpeed: 300
 }
 
 function appReducer(state = initialState, action) {
@@ -99,7 +100,6 @@ function appReducer(state = initialState, action) {
 }
 
 function getActiveChar(active) {
-    console.log(active);
     return active[0].char === "s" ? " " : active[0].char;
 }
 
