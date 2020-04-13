@@ -4,7 +4,7 @@
 .App {
   text-align: center;
   min-height: 100vh;
-  font-family: 'Poiret One', cursive;
+  font-family: 'Poiret One', Arial, Helvetica;
   display: flex;
   flex-direction: column;
   background-image: linear-gradient(to right bottom, #ffffff, #f7f6fe, #efeefd, #e6e6fd, #dddefc);
@@ -33,7 +33,7 @@ header {
 img {
   height: 11rem;
   position: absolute;
-  top: 2rem;
+  top: 5rem;
   left: 3rem;
 }
 
@@ -69,12 +69,42 @@ img {
   box-shadow: -5px 5px 10px #dedffc, 5px -5px 10px #fbfafe;
 }
 
+#drum-pattern-container {
+  color: #45488a;
+}
+
 .btn {
   box-shadow: -5px 5px 10px #dedffc, 5px -5px 10px #fbfafe;
+  margin: 0 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn img {
+  width: 1rem;
+  height: 1rem;
 }
 
 .playback-container {
   display: flex;
+}
+
+.playback-controls {
+  display: flex;
+  justify-content: center;
+}
+
+.playback-controls .btn {
+  padding: 0.4rem;
+  width: 3.5rem;
+}
+
+#reset-controls {
+  margin-top: 1rem;
+}
+#reset-controls > div {
+  padding: 0.4rem;
+  width: 3.5rem;
 }
 
 .control {
@@ -133,11 +163,11 @@ a {
   text-decoration: none;
 }
 
-#display {
+.display {
   height: 8rem;
 }
 
-#display p {
+.display p {
   font-size: 3rem;
   color: #45488a;
 }
@@ -146,8 +176,6 @@ a {
   grid-column: 1/4;
   border-radius: 1rem;
   padding: 0.3rem;
-  /* color: white; */
-  /* background-color: #7c7ff7; */
   min-height: 1.1rem;
   text-transform: uppercase;
 }
@@ -161,4 +189,5 @@ textarea {
   background: none;
   resize: none;
   height: 4rem;
+  font-family: monospace;
 }

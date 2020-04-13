@@ -12,6 +12,7 @@ class DrumPattern extends React.Component {
     }
 
     render() {
+        
         return (
         <div id="drum-pattern-container">
             <h2>Track</h2>

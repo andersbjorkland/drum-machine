@@ -10,20 +10,20 @@ class Delete extends React.Component {
     }
 
     deleteLast() {
-        this.props.timedout();
+        this.props.timedout(300);
         return this.props.deleteLast();
     }
 
     render() {
         if ("delete" === this.props.appReducer.activeButton) {
             return (
-                <div id="drum-pattern-container" className="btn active" onClick={this.deleteLast}>
+                <div id="delete" className="btn active" onClick={this.deleteLast}>
                     DELETE
                 </div>
             );
         } else {
             return (
-                <div id="drum-pattern-container" className="btn" onClick={this.deleteLast}>
+                <div id="delete" className="btn" onClick={this.deleteLast}>
                     DELETE
                 </div>
             );
@@ -38,7 +38,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     deleteLast: () => dispatch(deleteLast()),
-    timedout: () => dispatch(timedout())
+    timedout: (time) => dispatch(timedout(time))
 });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Delete);

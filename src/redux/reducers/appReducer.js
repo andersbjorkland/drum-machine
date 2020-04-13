@@ -1,40 +1,44 @@
-import cy00 from '../../sounds/CYCdh_K2room_Kick-03.mp3';
-import cy01 from '../../sounds/CYCdh_K2room_Kick-04.mp3';
-import cy02 from '../../sounds/CYCdh_K2room_Kick-05.mp3';
-import cy03 from '../../sounds/CYCdh_K2room_Kick-06.mp3';
-import cy04 from '../../sounds/CYCdh_K2room_Kick-07.mp3';
-import cy05 from '../../sounds/CYCdh_K2room_Kick-08.mp3';
-import cy06 from '../../sounds/CYCdh_ElecK02-Snr01.wav';
-import cy07 from '../../sounds/CYCdh_ElecK02-HfHat.wav';
-import cy08 from '../../sounds/CYCdh_ElecK02-FX01.wav';
+import cy00 from '../../sounds/CYCdh_ElecK04-Kick01.wav';
+import cy01 from '../../sounds/CYCdh_ElecK04-Kick02.wav';
+import cy02 from '../../sounds/CYCdh_ElecK06-Clap02.wav';
+import cy03 from '../../sounds/CYCdh_K4-ClHat02.wav';
+import cy04 from '../../sounds/CYCdh_K4-Kick01.wav';
+import cy05 from '../../sounds/CYCdh_K4-OpHat02.wav';
+import cy06 from '../../sounds/CYCdh_K4-Snr02.wav';
+import cy07 from '../../sounds/CYCdh_K4-Snr07.wav';
+import cy08 from '../../sounds/CYCdh_K5-Snr04.wav';
 
 import Drum from '../../utilities/Drum';
 
-import {PRESSED_KEY, DRUM_CLICKED, RESET, REQUEST_DRUMS, RESOLVED_GET_DRUMS, DELETE_LAST, PLAY_ON} from '../actions';
+import {PRESSED_KEY, DRUM_CLICKED, RESET, RESET_ALL, DELETE_LAST, PLAY_ON, PLAY_STOP, PLAY_PAUSE, PLAY_CHARACTER} from '../actions';
 
 const drumClips = [
-    new Drum(0, "", 'Q', 81),
-    new Drum(1, "", 'W', 87),
-    new Drum(2, "", 'E', 69),
-    new Drum(3, "", 'A', 65),
-    new Drum(4, "", 'S', 83),
-    new Drum(5, "", 'D', 68),
-    new Drum(6, "", 'Z', 90),
-    new Drum(7, "", 'X', 88),
-    new Drum(8, "", 'C', 67)
+    new Drum(0, cy00, 'Q', 81),
+    new Drum(1, cy01, 'W', 87),
+    new Drum(2, cy02, 'E', 69),
+    new Drum(3, cy03, 'A', 65),
+    new Drum(4, cy04, 'S', 83),
+    new Drum(5, cy05, 'D', 68),
+    new Drum(6, cy06, 'Z', 90),
+    new Drum(7, cy07, 'X', 88),
+    new Drum(8, cy08, 'C', 67),
+    new Drum(9, "", "s", "32")
 ]
 
 const initialState = {
     status: "OK",
-    drums: [],
+    drums: drumClips,
     activeDrum: "",
     activeButton: "",
     pattern: "",
     permittedKeys: [65, 67, 68, 69, 81, 83, 87, 88, 90],
     spaceKey: 32,
-    isFetching: true,
+    isFetching: false,
     timer: null,
-    playbackSpeed: 300
+    playbackSpeed: 350,
+    playback: false,
+    playbackIndex: 0,
+    playbackCharacter: ""
 }
 
 function appReducer(state = initialState, action) {
@@ -68,23 +72,6 @@ function appReducer(state = initialState, action) {
                 activeDrum: "",
                 activeButton: ""
             });
-        case REQUEST_DRUMS:
-            return Object.assign({}, state, {
-                isFetching: true
-            });
-        case RESOLVED_GET_DRUMS:
-            let jsonDrums = action.payload;
-            let drums = [];
-            let drumId = 0;
-            jsonDrums.forEach(element => {
-                drums.push(new Drum(drumId, "https://localhost:8443" + element.clip, element.char, element.keycode));
-                drumId++;
-            });
-            drums.push(new Drum(9, "", "s", "32"));
-            return Object.assign({}, state, {
-                isFetching: false,
-                drums: drums
-            });
         case DELETE_LAST:
             let pattern = "";
             if (state.pattern.length > 1) {
@@ -93,6 +80,28 @@ function appReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 pattern: pattern,
                 activeButton: "delete"
+            });
+        case PLAY_STOP:
+            return Object.assign({}, state, {
+                playback: false,
+                playbackIndex: 0
+            });
+        case PLAY_ON:
+            return Object.assign({}, state, {
+                playback: true
+            });
+        case PLAY_PAUSE:
+            return Object.assign({}, state, {
+                playback: false,
+                playbackIndex: action.payload.index
+            });
+        case RESET_ALL:
+            return Object.assign({}, state, {
+                ...initialState
+            });
+        case PLAY_CHARACTER:
+            return Object.assign({}, state, {
+                playbackCharacter: action.payload.character
             });
         default:
             return state;

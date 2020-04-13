@@ -1,17 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Drum from './Drum';
-import { getDrums } from '../redux/actions';
 
 
 class Drumkit extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        this.props.getDrums();
-    }
 
     render () {
         if (this.props.appReducer.isFetching) {
@@ -37,9 +29,5 @@ class Drumkit extends React.Component {
 const mapStateToProps = state => ({
     ...state
 });
-
-const mapDispatchToProps = dispatch => ({
-    getDrums: () => dispatch(getDrums()),
-});
   
-export default connect(mapStateToProps, mapDispatchToProps)(Drumkit);
+export default connect(mapStateToProps)(Drumkit);

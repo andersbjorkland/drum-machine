@@ -3,21 +3,17 @@ import { connect } from 'react-redux';
 
 
 class Display extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-        if(this.props.appReducer.activeDrum === "s" ) {
+        if(this.props.character === "s" ) {
             return (
-                <div id="display">
+                <div className="display" id={"display-"+this.props.id}>
                     <p>SPACE</p>
                 </div>
             );
         } else {
             return (
-                <div id="display">
-                    <p>{this.props.appReducer.activeDrum}</p>
+                <div className="display" id={"display-"+this.props.id}>
+                    <p>{this.props.character}</p>
                 </div>
             );
         }

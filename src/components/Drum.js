@@ -13,7 +13,7 @@ class Drum extends React.Component {
         let element = e.currentTarget;
         let audioElementId = element.id.substring(15, 16);
         let audioElement = document.getElementById(audioElementId);
-        this.props.timedout();
+        this.props.timedout(300);
         if (audioElementId !== "s") {
             audioElement.currentTime = 0;
             audioElement.play();;
@@ -53,7 +53,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     pressedKey: (keycode) => dispatch(pressedKey(keycode)),
     drumClicked: (id) => dispatch(drumClicked(id)),
-    timedout: () => dispatch(timedout())
+    timedout: (time) => dispatch(timedout(time))
 });
   
 export default connect(mapStateToProps, mapDispatchToProps)(Drum);
