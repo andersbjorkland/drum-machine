@@ -141,7 +141,7 @@ class App extends React.Component {
             </div>
           </div>          
         </div>
-        <footer><a href="https://anders.femtearenan.se">Anders Björkland 2020</a></footer>
+        <footer><a href="https://andersbjorkland.online">Anders Björkland 2020</a></footer>
       </div>
     );
   }
